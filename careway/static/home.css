@@ -1,0 +1,56 @@
+body {
+  background: #0e0d0d;
+  color: #dbb90b;
+}
+
+h1{
+    color:#dfba16;
+
+} h3, h4, h5, h6 {
+  color:#070707;
+}
+
+h2{
+  color:#dfba16
+}
+.bg-steel {
+  background-color: #bdcde413;
+}
+.site-header .container .d-flex .h1{
+  color:olive;
+}
+.site-header .navbar-nav .nav-link {
+  color: #dfba16;
+}
+
+.site-header .navbar-nav .nav-link:hover {
+  color: #dfba16;
+}
+
+.site-header .navbar-nav .nav-link.active {
+  font-weight: 500;
+}
+
+.content-section {
+  background: #111111;
+  padding: 5px 10px;
+  border: 1px solid #dfba16;
+  border-radius: 3px;
+  margin-bottom: 15px;
+}
+
+.content-section .form-group{
+  color: #dfba16;
+}
+
+
+.small .text-muted{
+color: #dfba16;
+}
+
+.card{
+  background-color: #0f0f0f;
+  border: 1px solid #dfba16;
+
+}
+  
