@@ -2,7 +2,7 @@ from flask import render_template,url_for,flash,redirect, request
 from careway.forms import RegistrationForm,LoginForm, RequestResetForm, ResetPasswordForm
 from careway import app,db,bcrypt,mail
 from careway.models import User
-from flask_login import login_user, current_user,logout_user,login_required
+from flask_login import login_user, current_user,logout_user
 from flask_mail import Message
 
 @app.route("/")
@@ -51,13 +51,17 @@ def logout():
 
 def send_reset_email(user):
     token=user.get_reset_token()
-    msg=Message('Password Reset Request',sender='carewaypoint@gmail.com',recipients=[user.email])
-    msg.body=f'''To reset your password,visit the following link:
+    msg= Message('Password Reset Request',sender='carewaypoint@gmail.com',recipients=[user.email])
+    msg.body= f'''To reset your password,visit the following link:
 {url_for('reset_token', token=token  , _external=True)}
 
 If you did not make this request then simply ignore this email and no changes will be made.    
 '''
     mail.send(msg)
+
+
+    
+
 
 @app.route("/reset_password",methods=['GET','POST'] )
 def reset_request():
@@ -67,7 +71,7 @@ def reset_request():
     if form.validate_on_submit():
         user=User.query.filter_by(email=form.email.data).first()
         send_reset_email(user)
-        flash('An email has been sent with an instruction to reset your password.','info')
+        flash('An email has been sent with an instruction to reset your password.Please check your spam inbox.','info')
         return redirect(url_for('login'))
     return render_template('reset_request.html',title='Reset Password',form=form)
 

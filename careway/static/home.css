@@ -6,12 +6,19 @@ body {
 h1{
     color:#dfba16;
 
-} h3, h4, h5, h6 {
+}
+ h3 {
+  color:white;
+}
+  h4, h5, h6 {
   color:#070707;
 }
 
 h2{
   color:#dfba16
+}
+a{
+  color:black
 }
 .bg-steel {
   background-color: #bdcde413;
