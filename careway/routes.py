@@ -5,7 +5,26 @@ from careway import app,db,bcrypt,mail
 from careway.models import User
 from flask_login import login_user, current_user,logout_user
 from flask_mail import Message
+from careway import model
+from . import target_classnames
+import pandas as pd
+from sklearn.naive_bayes import MultinomialNB
+#Aqua Routes
 
+
+@app.before_first_request
+def startup():
+  global data, model, target_classnames
+  df = pd.read_csv('D:\Projects\carewaypoint\carewaypoint\careway\CWPP.csv')
+  target = df.target
+  df.drop('target_classnames', axis=1, inplace=True)
+  df.drop('target', axis=1, inplace=True)
+  data = df.to_numpy()
+  target_classnames = ['Data Scientist', 'Full Stack Developer', 'Big Data Engineer', 'Database Administrator', 'Cloud Architect',
+                       'Cloud Services Developer ', 'Network Architect', 'Data Quality Manager', 'Machine Learning', 'Business Analyst']
+  model = MultinomialNB(alpha=1)
+  model.fit(data, target)
+  
 @app.route("/")
 @app.route("/home")
 def home():
@@ -98,4 +117,41 @@ def reset_token(token):
 @app.route("/user_form",methods=['POST','GET'])
 def user_form():
     form=UserInterestForm()
+    
     return render_template('form.html',title='Prediction',form=form)
+
+
+@app.route("/suggest", methods=["GET","POST"])
+def suggest():
+    form = UserInterestForm()
+    ar=[0 for i in range(11)]
+    d = {"B.E Computer Science": 0, "B.E Information Technology": 3, "M.E Computer Science": 6, "B.E Electrical and Electronics engineering": 1, "B.E Electrical and Communication engineering": 2, "M.Sc Computer science":9}
+    print(ar)
+    print("IN FORM")
+    und = request.form['und']
+    pnd = request.form['pnd']
+    print(und,pnd)
+    degrees=[und,pnd]
+    for i in degrees:
+        ar[d[i]]=1
+
+    print(ar)
+    verdict=predict(ar)
+    print(verdict)
+    return render_template('form.html', title='Prediction', form=form, verdict=verdict['prediction'])
+
+
+def predict(array):
+    print("TARGET", target_classnames)
+    print("MODEL",model)
+#   if request.method == 'POST':
+#     request_data = request.get_json()
+#     array = [request_data['data']]
+    narray=[array]
+    predict = model.predict(narray)
+    print("PREDICT", predict)
+    predict_levels = model.predict_proba(narray)
+    print(predict_levels[0])
+    # The above code is for the levels which you need to order
+    return {'prediction': target_classnames[predict[0]]}
+
