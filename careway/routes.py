@@ -1,5 +1,6 @@
+from turtle import title
 from flask import render_template,url_for,flash,redirect, request
-from careway.forms import RegistrationForm,LoginForm, RequestResetForm, ResetPasswordForm
+from careway.forms import RegistrationForm,LoginForm, RequestResetForm, ResetPasswordForm,UserInterestForm
 from careway import app,db,bcrypt,mail
 from careway.models import User
 from flask_login import login_user, current_user,logout_user
@@ -91,3 +92,10 @@ def reset_token(token):
         flash( 'Your Password has been Updated! Now you are able to login','success')
         return redirect(url_for('login'))
     return render_template('reset_token.html', title='Reset Password',form=form)
+
+
+
+@app.route("/user_form",methods=['POST','GET'])
+def user_form():
+    form=UserInterestForm()
+    return render_template('form.html',title='Prediction',form=form)

@@ -1,0 +1,38 @@
+{%extends "layout.html" %}
+{% block content %}
+<div class="content-section">
+<form method="POST" action="/suggest">
+  <div class="form-group">
+    <label for="exampleInputPassword1">Undergraduate</label>
+    <div class="form-group col-md-4">
+      <select id="inputState" class="btn btn-secondary dropdown-toggle" >
+        <option selected>B.E Computer Science </option>
+        <option selected>B.E Information Technology</option>
+        <option selected>B.E Electrical and Electronics engineering </option>
+        <option selected>B.E Electrical and Communication engineering </option>
+      </select>
+    </div>
+    </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Post-graduate</label>
+    <div class="form-group col-md-4">
+      <select id="inputState" class="btn btn-secondary dropdown-toggle" >
+        <option selected>M.E Computer Science</option>
+        <option>M.Sc Computer science </option>
+        <option>MCA</option>
+      </select>
+    </div>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Doctorate</label>
+      <div class="form-group col-md-4">
+        <select id="inputState" class="btn btn-secondary dropdown-toggle" >
+          <option selected>Data Analytics</option>
+          <option>Data Science</option>
+        </select>
+      </div>
+      </div>
+ <p> <button type="submit" class="btn btn-success">Suggest</button></p>
+</form>
+</div>
+{%endblock content%}

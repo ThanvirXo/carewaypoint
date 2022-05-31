@@ -46,3 +46,8 @@ class ResetPasswordForm(FlaskForm):
     password=PasswordField('Password',validators=[DataRequired()])
     confirm_password=PasswordField('Confirm Password',validators=[DataRequired(),EqualTo('password')])
     submit=SubmitField('Reset Password')
+
+class UserInterestForm(FlaskForm):
+    interest=StringField('Interest')
+    edu_interest=StringField('Education Interest')
+    submit=SubmitField('Predict')
