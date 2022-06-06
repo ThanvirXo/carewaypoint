@@ -9,13 +9,14 @@ from careway import model
 from . import target_classnames
 import pandas as pd
 from sklearn.naive_bayes import MultinomialNB
+from collections import OrderedDict
 #Aqua Routes
 
 
 @app.before_first_request
 def startup():
   global data, model, target_classnames
-  df = pd.read_csv('D:\Projects\carewaypoint\carewaypoint\careway\CWPP.csv')
+  df = pd.read_csv('D:\\Naveen G\\carewaypoint\\careway\\CWPP.csv')
   target = df.target
   df.drop('target_classnames', axis=1, inplace=True)
   df.drop('target', axis=1, inplace=True)
@@ -130,15 +131,15 @@ def suggest():
     print("IN FORM")
     und = request.form['und']
     pnd = request.form['pnd']
-    print(und,pnd)
     degrees=[und,pnd]
     for i in degrees:
         ar[d[i]]=1
 
-    print(ar)
     verdict=predict(ar)
-    print(verdict)
-    return render_template('form.html', title='Prediction', form=form, verdict=verdict['prediction'])
+    levels=predictLevels(ar)
+    print(levels)
+    finalLevels = sorted(levels.items(), key=lambda x: x[1], reverse=True)
+    return render_template('form.html', title='Prediction', form=form, verdict=verdict['prediction'], levels=finalLevels)
 
 
 def predict(array):
@@ -155,3 +156,14 @@ def predict(array):
     # The above code is for the levels which you need to order
     return {'prediction': target_classnames[predict[0]]}
 
+def predictLevels(array):
+    narray=[array]
+    predict_levels = model.predict_proba(narray)
+    predict_levels_list = predict_levels[0].tolist()
+    res = {}
+    for key in target_classnames:
+        for value in predict_levels_list:
+            res[key] = value
+            predict_levels_list.remove(value)
+            break
+    return(res)
