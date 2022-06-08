@@ -132,9 +132,11 @@ def suggest():
     print("IN FORM")
     und = request.form['und']
     pnd = request.form['pnd']
-    degrees=[und,pnd]
-    for i in degrees:
-        ar[d[i]]=1
+    if und!="None" and pnd!="None":
+        degrees=[und,pnd]
+        for i in degrees:
+            ar[d[i]]=1
+    
 
     verdict=predict(ar)
     levels=predictLevels(ar)
