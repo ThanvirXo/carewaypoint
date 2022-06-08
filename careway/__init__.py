@@ -12,6 +12,7 @@ from operator import mod
 from werkzeug.utils import secure_filename
 from flask_cors import CORS
 import logging
+import _tkinter
 import pandas as pd
 import numpy as np
 from sklearn.naive_bayes import MultinomialNB
