@@ -16,7 +16,7 @@ from collections import OrderedDict
 @app.before_first_request
 def startup():
   global data, model, target_classnames
-  df = pd.read_csv('C:\\Users\\thanv\\Desktop\\carewaypoint\\careway\\CWPP.csv')
+  df = pd.read_csv('careway\CWPP.csv')
   target = df.target
   df.drop('target_classnames', axis=1, inplace=True)
   df.drop('target', axis=1, inplace=True)
