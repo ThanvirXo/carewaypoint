@@ -16,7 +16,7 @@ from collections import OrderedDict
 @app.before_first_request
 def startup():
   global data, model, target_classnames
-  df = pd.read_csv('D:\\Naveen G\\carewaypoint\\careway\\CWPP.csv')
+  df = pd.read_csv('C:\\Users\\thanv\\Desktop\\carewaypoint\\careway\\CWPP.csv')
   target = df.target
   df.drop('target_classnames', axis=1, inplace=True)
   df.drop('target', axis=1, inplace=True)
@@ -126,7 +126,8 @@ def user_form():
 def suggest():
     form = UserInterestForm()
     ar=[0 for i in range(11)]
-    d = {"B.E Computer Science": 0, "B.E Information Technology": 3, "M.E Computer Science": 6, "B.E Electrical and Electronics engineering": 1, "B.E Electrical and Communication engineering": 2, "M.Sc Computer science":9}
+    d = {"B.E Computer Science": 0, "B.E Information Technology": 3, "M.E Computer Science": 6, "B.E Electrical and Electronics engineering": 1, "B.E Electrical and Communication engineering": 2, "M.Sc Computer science":9,
+    "B.Sc Computer Science":4,"Bachelor Computer Application":5,"M.E B.E Electrical and Electronics engineering":7,"M.E Electrical and Communication engineering":8,"M.Tech/M.E Information Technology":10}
     print(ar)
     print("IN FORM")
     und = request.form['und']
