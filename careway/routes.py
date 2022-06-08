@@ -1,4 +1,4 @@
-from turtle import title
+# from turtle import title
 from flask import render_template,url_for,flash,redirect, request
 from careway.forms import RegistrationForm,LoginForm, RequestResetForm, ResetPasswordForm,UserInterestForm
 from careway import app,db,bcrypt,mail
@@ -16,7 +16,7 @@ from collections import OrderedDict
 @app.before_first_request
 def startup():
   global data, model, target_classnames
-  df = pd.read_csv('careway\CWPP.csv')
+  df = pd.read_csv('./careway/CWPP.csv')
   target = df.target
   df.drop('target_classnames', axis=1, inplace=True)
   df.drop('target', axis=1, inplace=True)
