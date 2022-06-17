@@ -126,8 +126,8 @@ def user_form():
 def suggest():
     form = UserInterestForm()
     ar=[0 for i in range(11)]
-    d = {"B.E Computer Science": 0, "B.E Information Technology": 3, "M.E Computer Science": 6, "B.E Electrical and Electronics engineering": 1, "B.E Electrical and Communication engineering": 2, "M.Sc Computer science":9,
-    "B.Sc Computer Science":4,"Bachelor Computer Application":5,"M.E B.E Electrical and Electronics engineering":7,"M.E Electrical and Communication engineering":8,"M.Tech/M.E Information Technology":10}
+    d = {"B.E Computer Science": 0, "B.E/B.Tech Information Technology": 3, "M.E Computer Science": 6, "B.E Electrical and Electronics engineering": 1, "B.E Electrical and Communication engineering": 2, "M.Sc Computer science":9,
+    "B.Sc Computer Science":4,"Bachelor Computer Application":5,"M.E Electrical and Electronics engineering":7,"M.E Electrical and Communication engineering":8,"M.Tech/M.E Information Technology":10}
     print(ar)
     print("IN FORM")
     und = request.form['und']
