@@ -48,7 +48,9 @@
     <p><button type="submit" class="btn btn-success">Suggest</button></p>
   </form>
 </div>
-<h1>Levels of prediction</h1>
+{% if und or pnd %}
+<h1>Prediction for the selected {{und}} & {{pnd}} </h1>
+{% endif %}
 <ul>
   {% for level in levels %}
   <li>{{level[0]}}</li>

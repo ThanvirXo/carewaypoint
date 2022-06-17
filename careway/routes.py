@@ -142,7 +142,7 @@ def suggest():
     levels=predictLevels(ar)
     print(levels)
     finalLevels = sorted(levels.items(), key=lambda x: x[1], reverse=True)
-    return render_template('form.html', title='Prediction', form=form, verdict=verdict['prediction'], levels=finalLevels)
+    return render_template('form.html', title='Prediction', form=form, verdict=verdict['prediction'], levels=finalLevels,und=und,pnd=pnd)
 
 
 def predict(array):
